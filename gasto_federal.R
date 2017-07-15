@@ -1,8 +1,8 @@
-## Função Gasto Federal
-## Retorno a tabela do gasto federal por função para um determinado ano
+## FunÃ§Ã£o Gasto Federal
+## Retorno a tabela do gasto federal por funÃ§Ã£o para um determinado ano
 ## Ano deve ser maior que 2012
 
-gasto_federal <- function(ano)
+gasto_federal <- function(ano=2017)
 {
 
   url = paste0("http://www.portaldatransparencia.gov.br/PortalFuncoes.asp?Exercicio=",ano)
@@ -21,7 +21,7 @@ gasto_federal <- function(ano)
   v1 = gsub(".","",result, fixed = TRUE)
   v1 = as.numeric(gsub(",",".", v1, fixed = TRUE))
   
-  grep("Funç", page)
+  grep("FunÃ§", page)
   pattern2 = '<td class=\"firstChild\"><a href=\"/PortalFuncoes_Detalhe.asp?([^<]*)</a></td>'
   datalines = grep(pattern2,page[1:length(page)],value=TRUE)
   getexpr = function(s,g)substring(s,g,g+attr(g,'match.length')-1)
@@ -49,7 +49,7 @@ gasto_federal <- function(ano)
   v2 = gsub(".","",result, fixed = TRUE)
   v2 = as.numeric(gsub(",",".", v2, fixed = TRUE))
   
-  grep("Funç", page)
+  grep("FunÃ§", page)
   pattern2 = '<td class=\"firstChild\"><a href=\"/PortalFuncoes_Detalhe.asp?([^<]*)</a></td>'
   datalines = grep(pattern2,page[1:length(page)],value=TRUE)
   getexpr = function(s,g)substring(s,g,g+attr(g,'match.length')-1)
