@@ -4,7 +4,7 @@
 
 gasto_federal <- function(ano=2017, completo = TRUE)
 {
-
+  try(if (ano<2013) stop("Não é possível buscar dados de 2012 ou anteriores"))
   url = paste0("http://www.portaldatransparencia.gov.br/PortalFuncoes.asp?Exercicio=",ano)
   
   page = readLines(url)
