@@ -1,10 +1,48 @@
-## Função Gasto Federal
-## Retorno a tabela do gasto federal por função para um determinado ano
-## Ano deve ser maior que 2012
-
-gasto_federal <- function(ano=2017, completo = TRUE)
+gasto_federal <- function(ano=2017, completo = TRUE, categoria ="")
 {
+  
   try(if (ano<2013) stop("Não é possível buscar dados de 2012 ou anteriores"))
+  cats = c('04','20','08','19','23','24','13','05','27','14','12','28','25',
+    '03','18','16','22','02','01','21','09','07','17','10','06','11','26','15','')
+  try(if ( ! categoria %in% cats ) stop ("Categoria inválida"))
+  
+  if (!categoria %in% "") {
+    
+    url = paste0("http://www.portaltransparencia.gov.br/PortalFuncoes_Detalhe.asp?Exercicio=",ano,"&codFuncao=", categoria)
+    
+    page = readLines(url)
+    grep("Refin",page)
+    
+    pattern = '<td class=\"colunaValor\">([^<]*)</td>'
+    datalines = grep(pattern,page[290:length(page)],value=TRUE)
+    getexpr = function(s,g)substring(s,g,g+attr(g,'match.length')-1)
+    gg = gregexpr(pattern,datalines)
+    matches = mapply(getexpr,datalines,gg)
+    result = gsub(pattern,'\\1',matches)
+    names(result) = NULL
+    
+    v3 = gsub(".","",result, fixed = TRUE)
+    v3 = as.numeric(gsub(",",".", v3, fixed = TRUE))
+    
+    grep("Finalidade", page)
+    pattern2 = '[0-9][0-9][0-9] - ([^<]*)<'
+    datalines = grep(pattern2,page[1:length(page)],value=TRUE)
+    getexpr = function(s,g)substring(s,g,g+attr(g,'match.length')-1)
+    gg = gregexpr(pattern2,datalines)
+    matches = mapply(getexpr,datalines,gg)
+    result = gsub(pattern,'\\1',matches)
+    names(result) = NULL
+    
+    t3 = substr(result,7,nchar(result)-1)
+    
+    tab2 = data.frame(cbind(t3,v3))
+    colnames(tab2) = c("SubFuncao","Valor")
+    tab2[,2] = as.numeric(paste(tab2[,2]))
+    
+    return (tab2)
+    
+  }
+  
   url = paste0("http://www.portaldatransparencia.gov.br/PortalFuncoes.asp?Exercicio=",ano)
   
   page = readLines(url)
