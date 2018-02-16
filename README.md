@@ -12,3 +12,11 @@ Caso queira receber os dados de uma categoria específica, inserir ao final como
 
 Retorna a série pedida da base de dados do Banco Central do Brasil, formatada. 
 Retorna por padrão o câmbio real x dólar.
+
+## prefixo()
+
+Cria um string com a data e hora formatada "%Y%M%D_%HH%MM" de forma a ser usada como parte do nome de um arquivo salvo.
+
+## prefixo2()
+
+Cria um string com a data formatada "%Y%M%D" de forma a ser usada como parte do nome de um arquivo salvo.
