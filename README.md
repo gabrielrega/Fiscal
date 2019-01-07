@@ -56,7 +56,9 @@ Encontra o padrão de texto na página url. Retorna o nome do arquivo em um data
 
 Exemplo:
 
+~~~
 url <- "https://www.tesouro.fazenda.gov.br/-/resultado-do-tesouro-nacional"
 pattern <- 'Anexos([^<]*)xlsx'
 arq <- find_in_url(pattern, url)
 arq[1]
+~~~
