@@ -49,3 +49,14 @@ Cria um string com a data e hora formatada "%Y%M%D_%HH%MM" de forma a ser usada 
 ## prefixo2()
 
 Cria um string com a data formatada "%Y%M%D" de forma a ser usada como parte do nome de um arquivo salvo.
+
+## find_in_url(pattern, url)
+
+Encontra o padrão de texto na página url. Retorna o nome do arquivo em um data.frame. Usado para encontrar um arquivo para posterior download.
+
+Exemplo:
+
+url <- "https://www.tesouro.fazenda.gov.br/-/resultado-do-tesouro-nacional"
+pattern <- 'Anexos([^<]*)xlsx'
+arq <- find_in_url(pattern, url)
+arq[1]
