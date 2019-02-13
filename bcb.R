@@ -18,3 +18,11 @@ bcb_ts <- function(x = 24363){
     mes = as.numeric(substr(valor$data[1], 4, 5))
     return(ts(valor2, start = c(ano,mes), frequency = 12))
 }
+
+bcb2 <- function(x = 24363){
+  y <- read.csv2(paste0("http://api.bcb.gov.br/dados/serie/bcdata.sgs.",
+                   x,
+                   "/dados?formato=csv"))
+  y$data = as.Date(as.character(y$data), format = "%d/%m/%Y")
+  return(y)
+}
