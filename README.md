@@ -39,8 +39,16 @@ Caso queira receber os dados de uma categoria específica, inserir ao final como
 
 ## bcb(serie=24363)
 
-Retorna a série pedida da base de dados do Banco Central do Brasil, formatada. 
+Retorna a série pedida da base de dados do Banco Central do Brasil, formatada. Retorna um tibble.
 Retorna por padrão o câmbio real x dólar.
+
+## bcb2(serie=24363)
+
+O mesmo acima, porém não usa dependências. Retorna um dataframe.
+
+## bcb_ts(serie=24363)
+
+O mesmo que bcb() porém retorna um objeto ts.
 
 ## prefixo()
 
