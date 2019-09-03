@@ -70,3 +70,11 @@ pattern <- 'Anexos([^<]*)xlsx'
 arq <- find_in_url(pattern, url)
 arq[1]
 ~~~
+
+## ocde(x = "RUS", y = "L")
+
+Baixa no site da OCDE o PIB trimestral do país indicado pelo código alfanumérico. Exige o pacote rsdmx.
+
+## cambio_bcb(cod = 115)
+
+Baixa os câmbios no site do BCB a partir do código numérico.
